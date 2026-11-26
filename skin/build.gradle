@@ -14,14 +14,31 @@ android {
         versionName "1.0"
     }
 
-    // 皮肤验证说明：Poweramp 会校验发布签名。调试包用 debug key 签名不会被校验，
-    // 如需在开发期验证签名，可在此配置 release 签名并强制 debug 使用：
-    //signingConfigs {
-    //    release { ... }
-    //}
-    //buildTypes {
-    //    debug { signingConfig signingConfigs.release }
-    //}
+    // 皮肤验证说明：Poweramp 按 APK 签名证书白名单校验皮肤。
+    // Release 签名参数从 local.properties 读取（该文件不入库），未配置时 release 不签名。
+    // 如需在开发期自测验证结果，可把 debug 也指向该 signingConfig（debug 用 debug key 会一直显示 [unverified]）。
+    def signingProps = new Properties()
+    def signingPropsFile = rootProject.file("local.properties")
+    if (signingPropsFile.exists()) {
+        signingPropsFile.withInputStream { signingProps.load(it) }
+    }
+    signingConfigs {
+        release {
+            if (signingProps['RELEASE_STORE_FILE']) {
+                storeFile file(signingProps['RELEASE_STORE_FILE'])
+                storePassword signingProps['RELEASE_STORE_PASSWORD']
+                keyAlias signingProps['RELEASE_KEY_ALIAS']
+                keyPassword signingProps['RELEASE_KEY_PASSWORD']
+            }
+        }
+    }
+    buildTypes {
+        release {
+            if (signingProps['RELEASE_STORE_FILE']) {
+                signingConfig signingConfigs.release
+            }
+        }
+    }
 
     compileOptions {
         sourceCompatibility = JAVA_SOURCE_COMPATIBILITY

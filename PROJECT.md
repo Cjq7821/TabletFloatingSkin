@@ -93,9 +93,19 @@ Poweramp v3 皮肤**不能修改布局 XML**（仅允许 `merge_*.xml` 注入）
 ```powershell
 # 在工程根目录（TabletFloatingSkin/）执行：
 .\gradlew.bat :skin:clean :skin:assembleDebug
+
+# 正式分发包（release 签名，密码配置在 local.properties，不入库）：
+.\gradlew.bat :skin:assembleRelease
 ```
 
-产物：`skin/build/outputs/apk/debug/skin-debug.apk`，安装到平板后在 Poweramp「设置 → 外观 → 主题」中选择 **Tablet Floating**，或打开本 App 点击「应用 Tablet Floating 皮肤」。
+产物：调试包 `skin/build/outputs/apk/debug/skin-debug.apk`；正式包 `skin/build/outputs/apk/release/skin-release.apk`。安装到平板后在 Poweramp「设置 → 外观 → 主题」中选择 **Tablet Floating**，或打开本 App 点击「应用 Tablet Floating 皮肤」。
+
+### 发布签名与官方验证
+
+- keystore 位于工程外的 `../.keystore/tabletfloating-release.jks`（别名 `tabletfloating`，4096 位 RSA，有效期 10000 天），路径与密码写在 `local.properties` 的 `RELEASE_*` 项中，**密码务必备份**，丢失后无法覆盖更新安装。
+- 正式包证书 SHA-256：`60CE771E766395DE03F6EAE98A76CE5BB805D081FA7F587989737AF5E9888A66`
+- 提交 Poweramp 作者加入白名单：包名 `com.cjq7821.poweramp.v3.skins.tabletfloating` + 上述 SHA-256 + 分发渠道（GitHub Releases 等）。生效前皮肤显示 `[unverified]` 且选用 48 小时后自动取消。
+- 本地验证签名是否生效：把 `signingConfigs.release` 同样赋给 `debug` 构建类型，否则 debug 包仍用 debug key，一直显示未验证。
 
 > Android Studio：直接 `Open` 本工程目录，首次同步会自动写入 `sdk.dir`。
 
