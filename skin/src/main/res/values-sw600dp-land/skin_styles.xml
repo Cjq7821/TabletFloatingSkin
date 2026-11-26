@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<!-- ============ 皮肤主样式（深色，唯一版本）：平板横屏（smallest width >= 600dp 且横屏） ============
+	     布局参数全部为固定值（无设置项），按目标设备 1024×683dp（3200×2136 @ ~3.13x）调优。 -->
+	<style name="TabletFloatingSkinDark" parent="com.maxmpz.audioplayer:style/ActivityTheme_Black">
+
+		<!-- 系统状态栏背景透明 + 移除 Poweramp 自绘的状态栏遮罩（status_bar_bg 视图，黑主题默认 #5000） -->
+		<item name="android:statusBarColor">@android:color/transparent</item>
+		<item name="com.maxmpz.audioplayer:statusBarBg">#0000</item>
+
+		<!-- 导航栏：悬浮收窄（固定值） -->
+		<item name="com.maxmpz.audioplayer:navbar_marginLR">320dp</item>
+		<item name="com.maxmpz.audioplayer:navbar_marginB">10dp</item>
+		<item name="com.maxmpz.audioplayer:corners_navbar">28dp</item>
+
+		<!-- 封面圆角（18.75dp（与手机布局官方默认一致）） -->
+		<item name="com.maxmpz.audioplayer:corners_aa_scene_aa">18.75dp</item>
+
+		<!-- 标题/艺术家：封面图下方、左缘对齐封面图 -->
+		<item name="com.maxmpz.audioplayer:ItemTrackTitle_scene_aa">@style/TflItemTrackTitle_scene_aa</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackLine2_scene_aa">@style/TflItemTrackLine2_scene_aa</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackTitle_scene_aa_playing">@style/TflItemTrackTitle_scene_aa_playing</item> 		<item name="com.maxmpz.audioplayer:ItemTrackTitle_scene_aa_vis">@style/TflItemTrackTitle_scene_aa_vis</item> 		<item name="com.maxmpz.audioplayer:ItemTrackLine2_scene_aa_playing">@style/TflItemTrackLine2_scene_aa_playing</item> 		<item name="com.maxmpz.audioplayer:ItemTrackLine2_scene_aa_vis">@style/TflItemTrackLine2_scene_aa_vis</item>
+
+
+
+
+		<item name="com.maxmpz.audioplayer:ItemTrackAAImage_scene_aa">@style/TflItemTrackAAImage_scene_aa</item>
+		<item name="com.maxmpz.audioplayer:TopListWidget">@style/TflTopListWidget</item>
+		<item name="com.maxmpz.audioplayer:TopAABounds">@style/TflTopAABounds</item>
+
+		<item name="com.maxmpz.audioplayer:TopWaveseekLayout">@style/TflTopWaveseekLayout</item>
+		<item name="com.maxmpz.audioplayer:TopMetaInfoLayout">@style/TflTopMetaInfoLayout</item>
+		<item name="com.maxmpz.audioplayer:TopSubAAButtons">@style/TflTopSubAAButtons</item>
+
+		<!-- 播放控件：强制锁定为黑色圆形背景 + 白色图标样式 -->
+		<item name="com.maxmpz.audioplayer:colorPlayButtonsBg">#000</item>
+		<item name="com.maxmpz.audioplayer:colorPlayButtonsTint">#fff</item>
+		<item name="com.maxmpz.audioplayer:colorPlayButtonsStroke">#000</item>
+		<item name="com.maxmpz.audioplayer:play_round">@com.maxmpz.audioplayer:drawable/play_round_rounded_100dp</item>
+		<item name="com.maxmpz.audioplayer:pause_round">@com.maxmpz.audioplayer:drawable/pause_round_rounded</item>
+		<item name="com.maxmpz.audioplayer:rw_round">@com.maxmpz.audioplayer:drawable/rw_round_rounded</item>
+		<item name="com.maxmpz.audioplayer:ff_round">@com.maxmpz.audioplayer:drawable/ff_round_rounded</item>
+		<item name="com.maxmpz.audioplayer:prev_cat_round">@com.maxmpz.audioplayer:drawable/prev_cat_round_rounded</item>
+		<item name="com.maxmpz.audioplayer:next_cat_round">@com.maxmpz.audioplayer:drawable/next_cat_round_rounded</item>
+		<item name="com.maxmpz.audioplayer:colorBgInverse">#000</item>
+		<item name="com.maxmpz.audioplayer:colorIconInverse">#fff</item>
+
+		<!-- 播放控件扩展：官方 MoreButtons 布局（waveseek 区域加载额外按钮布局并切换对应样式） -->
+		<item name="com.maxmpz.audioplayer:TopWaveseekLayout_extraLayout">@com.maxmpz.audioplayer:layout/merge_topwaveseeklayout_extralayout</item>
+		<item name="com.maxmpz.audioplayer:TopPlay_scene_playing">@com.maxmpz.audioplayer:style/TopPlayMoreButtons_scene_playing</item>
+		<item name="com.maxmpz.audioplayer:TopPause">@com.maxmpz.audioplayer:style/TopPauseMoreButtons</item>
+		<item name="com.maxmpz.audioplayer:TopPause_scene_playing">@com.maxmpz.audioplayer:style/TopPauseMoreButtons_scene_playing</item>
+		<item name="com.maxmpz.audioplayer:TopTrackElapsed">@com.maxmpz.audioplayer:style/TopTrackElapsedMoreButtons</item>
+		<item name="com.maxmpz.audioplayer:TopTrackElapsed_scene_playing">@com.maxmpz.audioplayer:style/TopTrackElapsedMoreButtons_scene_playing</item>
+		<item name="com.maxmpz.audioplayer:TopTrackDuration">@com.maxmpz.audioplayer:style/TopTrackDurationMoreButtons</item>
+		<item name="com.maxmpz.audioplayer:TopTrackDuration_scene_playing">@com.maxmpz.audioplayer:style/TopTrackDurationMoreButtons_scene_playing</item>
+	</style>
+
+
+	<!-- ============ 专辑封面：62% 尺寸，屏幕左半侧水平居中，上下视觉居中 ============
+	     定位机制（1024×683dp）：列表全宽 + aaGravity=center_horizontal + aaPaddingRight=512dp（屏宽一半），
+	     封面内容区 = [0, 512dp]，任意封面大小均严格居中于左半屏（62% 封面宽约 423dp，左缘约 44dp）。
+	     垂直方向上下内边距对称（76/76），引擎在内容区内垂直居中 => 封面图视觉居中。 -->
+	<style name="TflListSubstyle" parent="com.maxmpz.audioplayer:ListSubstyle2">
+		<!-- 封面大小：71% × item 高（595dp，=列表高-状态栏）≈ 422.5dp，物理等效原始 62%×屏高683=423dp。
+	     注：boundsMatchList=width 使比例基数为 item 高而非屏高（真机实测 62%→369dp），故用 71% 补偿。 -->
+		<!-- 禁用宽幅 alt AA 布局：纵横比阈值设 999 永不触发；可用宽>0 也不应用 -->
+		<item name="com.maxmpz.audioplayer:altAaLayoutRatio">999</item>
+		<item name="com.maxmpz.audioplayer:maxAvailSizeForAltAaLayout">0dp</item>
+		<item name="com.maxmpz.audioplayer:aaItemRatio">71%</item>
+		<item name="com.maxmpz.audioplayer:aaMaxSize">424dp</item>
+		<!-- 不显示左右偷窥的相邻封面，保证留白干净 -->
+		<item name="com.maxmpz.audioplayer:aaSideItemNum">0</item>
+		<!-- 封面在 [0, 512dp] 内容区内水平居中（512dp = 屏宽 1024dp 的一半） -->
+		<!-- item 边界=列表全宽：官方 SampleSkinAAA 同款。必需——只有 item 全宽时 aaPadding 才有意义，
+		     否则 item 边界=封面贴身框、padding 被忽略（真机实测 20:28 版：paddingRight=512dp 无效，封面居中于全屏宽）。
+		     17:26 版宽矩形是 alt 宽幅布局所致（当时未禁用 alt），与该属性无关。 -->
+		<item name="com.maxmpz.audioplayer:aaItemBoundsMatchList">width</item>
+		<item name="com.maxmpz.audioplayer:aaGravity">center_horizontal</item>
+		<item name="com.maxmpz.audioplayer:aaPaddingLeft">0dp</item>
+		<item name="com.maxmpz.audioplayer:aaPaddingRight">512dp</item>
+		<!-- 上下对称 => 垂直视觉居中（底部内边距同时容纳封面下方两行文本） -->
+		<item name="com.maxmpz.audioplayer:aaPaddingTop">76dp</item>
+		<item name="com.maxmpz.audioplayer:aaPaddingBottom">76dp</item>
+	</style>
+
+	<!-- 主界面列表控件：仅替换封面子样式。列表保持全宽（match_parent），库视图不受限。 -->
+	<style name="TflTopListWidget" parent="com.maxmpz.audioplayer:TopListWidget">
+		<item name="com.maxmpz.audioplayer:listSubstyle">@style/TflListSubstyle</item>
+	</style>
+
+	<!-- 封面边界（不可见锚点视图，不再被右侧控件依赖）。
+	     aa* 值与 TflListSubstyle 保持一致（matchAASubstyle 下两者尺寸同步）。 -->
+	<style name="TflTopAABounds" parent="com.maxmpz.audioplayer:TopAABounds2">
+		<!-- 禁用宽幅 alt AA 布局：纵横比阈值设 999 永不触发；可用宽>0 也不应用 -->
+		<!-- 禁用宽幅 alt AA 布局（与 TflListSubstyle 同步） -->
+		<item name="com.maxmpz.audioplayer:altAaLayoutRatio">999</item>
+		<item name="com.maxmpz.audioplayer:maxAvailSizeForAltAaLayout">0dp</item>
+		<item name="com.maxmpz.audioplayer:aaItemRatio">71%</item>
+		<item name="com.maxmpz.audioplayer:aaMaxSize">424dp</item>
+		<item name="com.maxmpz.audioplayer:aaSideItemNum">0</item>
+		<!-- item 边界=列表全宽：官方 SampleSkinAAA 同款。必需——只有 item 全宽时 aaPadding 才有意义，
+		     否则 item 边界=封面贴身框、padding 被忽略（真机实测 20:28 版：paddingRight=512dp 无效，封面居中于全屏宽）。
+		     17:26 版宽矩形是 alt 宽幅布局所致（当时未禁用 alt），与该属性无关。 -->
+		<item name="com.maxmpz.audioplayer:aaItemBoundsMatchList">width</item>
+		<item name="com.maxmpz.audioplayer:aaGravity">center_horizontal</item>
+		<item name="com.maxmpz.audioplayer:aaPaddingLeft">0dp</item>
+		<item name="com.maxmpz.audioplayer:aaPaddingRight">512dp</item>
+		<item name="com.maxmpz.audioplayer:aaPaddingTop">76dp</item>
+		<item name="com.maxmpz.audioplayer:aaPaddingBottom">76dp</item>
+		<!-- 注：matchAASubstyle 下宽度由封面内容推导，widthPercent 实际不生效，保留仅为防御性声明 -->
+		<item name="com.maxmpz.audioplayer:layout_widthPercent">50%</item>
+		<!-- 上下不锚定，整体垂直居中 -->
+		<item name="com.maxmpz.audioplayer:layout_attachTop">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachBottom">@null</item>
+		<item name="android:layout_gravity">center_vertical</item>
+	</style>
+
+	<!-- ============ 右侧控件：硬锚定屏幕右半（50%），不依赖 aa_bounds ============
+	     aa_bounds 是封面贴身框（matchAASubstyle），尺寸随封面内容变化，不能作为 50% 分栏边界。 -->
+	<style name="TflTopWaveseekLayout" parent="com.maxmpz.audioplayer:TopWaveseekLayout">
+		<item name="com.maxmpz.audioplayer:layout_attachLeft">50%</item>
+		<!-- aa_bounds 高度已收缩为贴封面，垂直居中基准改回父容器 -->
+		<item name="com.maxmpz.audioplayer:layout_gravityTarget">@null</item>
+		<item name="android:layout_marginRight">32dp</item>
+	</style>
+
+	<!-- meta（信息行）：保持默认位置——右侧控件区下方（与默认皮肤一致），
+	     仅左缘锚到屏幕 50%、右缘留白 -->
+	<style name="TflTopMetaInfoLayout" parent="com.maxmpz.audioplayer:TopMetaInfoLayout">
+		<item name="com.maxmpz.audioplayer:layout_attachLeft">50%</item>
+		<item name="android:layout_marginRight">32dp</item>
+	</style>
+
+	<style name="TflTopSubAAButtons" parent="com.maxmpz.audioplayer:TopSubAAButtons">
+		<item name="com.maxmpz.audioplayer:layout_attachLeft">50%</item>
+		<item name="android:layout_marginRight">32dp</item>
+	</style>
+
+	<!-- 封面图 View：照抄官方 SampleSkinAAA 横屏做法，显式钉死正方形（宽=高）。
+	     横屏下默认 matchDimension 行为会切换/失效，导致封面图填满 item 变宽矩形（真机实测），必须显式声明。 -->
+	<style name="TflItemTrackAAImage_scene_aa" parent="com.maxmpz.audioplayer:ItemTrackAAImage_scene_aa">
+		<item name="com.maxmpz.audioplayer:layout_matchDimension">widthToHeight</item>
+		<item name="com.maxmpz.audioplayer:scale">1</item> <!-- 杀 0.975→1 切歌缩放动画（标题锚定封面底边会跟随跳动） -->
+		<!-- 位置：封面图在 item 内默认无锚定→FastLayout 左上角（真机实测 21:00 版贴左上，左缘8dp/上缘41dp 与默认 margin 吻合）。
+		     aaGravity 只移动 item 不移动图像、aaPadding* 在此路径被忽略，故用 margin 直接定位（默认 margin 已证实生效）:
+		     marginLeft=140dp（用户真机微调定稿）;
+		     marginTop=110dp（用户真机微调定稿）。 -->
+		<item name="android:layout_marginLeft">140dp</item>
+		<item name="android:layout_marginTop">110dp</item>
+	</style>
+
+	<!-- ============ 标题/艺术家：封面图下方、左缘对齐封面图左缘 ============
+	     默认锚定 scene_aa 底部（叠加在封面图上）且左缘贴父容器左缘；本皮肤改为：
+	     锚定 aa_image 底缘之下（attachTop）+ 左缘对齐 aa_image 左缘（attachLeftToLeft），
+	     标题随封面左缘动态对齐，不依赖固定补偿值（62% 封面左缘约 44dp）。 -->
+	<style name="TflItemTrackTitle_scene_aa" parent="com.maxmpz.audioplayer:ItemTrackTitle_scene_aa">
+		<item name="com.maxmpz.audioplayer:layout_attachBottom">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachTop">@com.maxmpz.audioplayer:id/aa_image</item>
+		<!-- 左缘对齐封面图左缘（清除默认 attachLeft=parent，改用 attachLeftToLeft 锚定） -->
+		<item name="com.maxmpz.audioplayer:layout_attachLeft">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachLeftToLeft">@com.maxmpz.audioplayer:id/aa_image</item>
+		<item name="com.maxmpz.audioplayer:layout_attachRight">@null</item> <!-- 清除默认歌词锚定，避免歌词变化触发重排 -->
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginTop">8dp</item>
+	</style>
+
+	<style name="TflItemTrackLine2_scene_aa" parent="com.maxmpz.audioplayer:ItemTrackLine2_scene_aa">
+		<item name="com.maxmpz.audioplayer:layout_attachBottom">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachTop">@com.maxmpz.audioplayer:id/title</item>
+		<item name="com.maxmpz.audioplayer:layout_attachRight">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_goneWhenEmpty">false</item> <!-- 防切歌瞬空整行消失 -->
+		<item name="com.maxmpz.audioplayer:layout_attachLeftToLeft">@com.maxmpz.audioplayer:id/aa_image</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginTop">2dp</item>
+	</style>
+        <!-- 切歌/可视化场景变体：官方 _vis/_playing 样式仅设 baseScene，锚定会回退默认值导致标题跳回底部（真机实测切歌闪烁），
+             故为每个变体复制同样的锚定覆盖，保证任何场景下标题位置一致 -->
+        <style name="TflItemTrackTitle_scene_aa_playing" parent="com.maxmpz.audioplayer:ItemTrackTitle_scene_aa_playing">
+                <item name="com.maxmpz.audioplayer:layout_attachBottom">@null</item>
+                <item name="com.maxmpz.audioplayer:layout_attachTop">@com.maxmpz.audioplayer:id/aa_image</item>
+                <item name="com.maxmpz.audioplayer:layout_attachLeft">@null</item>
+                <item name="com.maxmpz.audioplayer:layout_attachLeftToLeft">@com.maxmpz.audioplayer:id/aa_image</item>
+                <item name="com.maxmpz.audioplayer:layout_attachRight">@null</item>
+                <item name="android:layout_marginLeft">0dp</item>
+                <item name="android:layout_marginTop">8dp</item>
+        </style>
+        <style name="TflItemTrackTitle_scene_aa_vis" parent="com.maxmpz.audioplayer:ItemTrackTitle_scene_aa_vis">
+                <item name="com.maxmpz.audioplayer:layout_attachBottom">@null</item>
+                <item name="com.maxmpz.audioplayer:layout_attachTop">@com.maxmpz.audioplayer:id/aa_image</item>
+                <item name="com.maxmpz.audioplayer:layout_attachLeft">@null</item>
+                <item name="com.maxmpz.audioplayer:layout_attachLeftToLeft">@com.maxmpz.audioplayer:id/aa_image</item>
+                <item name="com.maxmpz.audioplayer:layout_attachRight">@null</item>
+                <item name="android:layout_marginLeft">0dp</item>
+                <item name="android:layout_marginTop">8dp</item>
+        </style>
+        <style name="TflItemTrackLine2_scene_aa_playing" parent="com.maxmpz.audioplayer:ItemTrackLine2_scene_aa_playing">
+                <item name="com.maxmpz.audioplayer:layout_attachBottom">@null</item>
+                <item name="com.maxmpz.audioplayer:layout_attachTop">@com.maxmpz.audioplayer:id/title</item>
+                <item name="com.maxmpz.audioplayer:layout_attachLeftToLeft">@com.maxmpz.audioplayer:id/aa_image</item>
+                <item name="com.maxmpz.audioplayer:layout_attachRight">@null</item>
+                <item name="com.maxmpz.audioplayer:layout_goneWhenEmpty">false</item>
+                <item name="android:layout_marginLeft">0dp</item>
+                <item name="android:layout_marginTop">2dp</item>
+        </style>
+        <style name="TflItemTrackLine2_scene_aa_vis" parent="com.maxmpz.audioplayer:ItemTrackLine2_scene_aa_vis">
+                <item name="com.maxmpz.audioplayer:layout_attachBottom">@null</item>
+                <item name="com.maxmpz.audioplayer:layout_attachTop">@com.maxmpz.audioplayer:id/title</item>
+                <item name="com.maxmpz.audioplayer:layout_attachLeftToLeft">@com.maxmpz.audioplayer:id/aa_image</item>
+                <item name="com.maxmpz.audioplayer:layout_attachRight">@null</item>
+                <item name="com.maxmpz.audioplayer:layout_goneWhenEmpty">false</item>
+                <item name="android:layout_marginLeft">0dp</item>
+                <item name="android:layout_marginTop">2dp</item>
+        </style>
+
+
+</resources>

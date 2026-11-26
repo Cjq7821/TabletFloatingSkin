@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<!-- 手机横屏（超宽）皮肤样式：MoreButtons 播放控件扩展 + 封面下方标题 + 导航栏左右缩进同平板（320dp）。
+	     平板横屏由更具体的 values-sw600dp-land 匹配，不受本文件影响；
+	     手机竖屏/平板竖屏走 values/skin_styles.xml（MoreButtons 已加入基础样式）。 -->
+	<style name="TabletFloatingSkinDark" parent="com.maxmpz.audioplayer:style/ActivityTheme_Black">
+
+		<!-- 系统状态栏背景透明 + 移除 Poweramp 自绘状态栏遮罩（双层，同基础样式） -->
+		<item name="android:statusBarColor">@android:color/transparent</item>
+		<item name="com.maxmpz.audioplayer:statusBarBg">#0000</item>
+
+		<!-- 超宽时导航栏左右缩进与平板布局相同 -->
+		<item name="com.maxmpz.audioplayer:navbar_marginLR">320dp</item>
+
+		<!-- 播放控件：强制锁定为黑色圆形背景 + 白色图标样式（同基础样式） -->
+		<item name="com.maxmpz.audioplayer:colorPlayButtonsBg">#000</item>
+		<item name="com.maxmpz.audioplayer:colorPlayButtonsTint">#fff</item>
+		<item name="com.maxmpz.audioplayer:colorPlayButtonsStroke">#000</item>
+		<item name="com.maxmpz.audioplayer:play_round">@com.maxmpz.audioplayer:drawable/play_round_rounded_100dp</item>
+		<item name="com.maxmpz.audioplayer:pause_round">@com.maxmpz.audioplayer:drawable/pause_round_rounded</item>
+		<item name="com.maxmpz.audioplayer:rw_round">@com.maxmpz.audioplayer:drawable/rw_round_rounded</item>
+		<item name="com.maxmpz.audioplayer:ff_round">@com.maxmpz.audioplayer:drawable/ff_round_rounded</item>
+		<item name="com.maxmpz.audioplayer:prev_cat_round">@com.maxmpz.audioplayer:drawable/prev_cat_round_rounded</item>
+		<item name="com.maxmpz.audioplayer:next_cat_round">@com.maxmpz.audioplayer:drawable/next_cat_round_rounded</item>
+		<item name="com.maxmpz.audioplayer:colorBgInverse">#000</item>
+		<item name="com.maxmpz.audioplayer:colorIconInverse">#fff</item>
+
+		<!-- 播放控件扩展：官方 MoreButtons 布局（同平板） -->
+		<item name="com.maxmpz.audioplayer:TopWaveseekLayout_extraLayout">@com.maxmpz.audioplayer:layout/merge_topwaveseeklayout_extralayout</item>
+		<item name="com.maxmpz.audioplayer:TopPlay_scene_playing">@com.maxmpz.audioplayer:style/TopPlayMoreButtons_scene_playing</item>
+		<item name="com.maxmpz.audioplayer:TopPause">@com.maxmpz.audioplayer:style/TopPauseMoreButtons</item>
+		<item name="com.maxmpz.audioplayer:TopPause_scene_playing">@com.maxmpz.audioplayer:style/TopPauseMoreButtons_scene_playing</item>
+		<item name="com.maxmpz.audioplayer:TopTrackElapsed">@com.maxmpz.audioplayer:style/TopTrackElapsedMoreButtons</item>
+		<item name="com.maxmpz.audioplayer:TopTrackElapsed_scene_playing">@com.maxmpz.audioplayer:style/TopTrackElapsedMoreButtons_scene_playing</item>
+		<item name="com.maxmpz.audioplayer:TopTrackDuration">@com.maxmpz.audioplayer:style/TopTrackDurationMoreButtons</item>
+		<item name="com.maxmpz.audioplayer:TopTrackDuration_scene_playing">@com.maxmpz.audioplayer:style/TopTrackDurationMoreButtons_scene_playing</item>
+
+		<!-- 标题/艺术家：封面图下方、左缘对齐封面图（同平板机制），覆盖全部场景变体防切歌跳动 -->
+		<item name="com.maxmpz.audioplayer:ItemTrackTitle_scene_aa">@style/TflItemTrackTitle_scene_aa</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackTitle_scene_aa_playing">@style/TflItemTrackTitle_scene_aa_playing</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackTitle_scene_aa_vis">@style/TflItemTrackTitle_scene_aa_vis</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackLine2_scene_aa">@style/TflItemTrackLine2_scene_aa</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackLine2_scene_aa_playing">@style/TflItemTrackLine2_scene_aa_playing</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackLine2_scene_aa_vis">@style/TflItemTrackLine2_scene_aa_vis</item>
+
+		<!-- 封面：禁用宽幅 alt 布局 + 钉死正方形（机制同平板，数值适配手机） -->
+		<item name="com.maxmpz.audioplayer:ItemTrackAAImage_scene_aa">@style/TflItemTrackAAImage_scene_aa</item>
+		<item name="com.maxmpz.audioplayer:TopListWidget">@style/TflTopListWidget</item>
+	</style>
+
+	<style name="TflTopListWidget" parent="com.maxmpz.audioplayer:TopListWidget">
+		<item name="com.maxmpz.audioplayer:listSubstyle">@style/TflListSubstyle</item>
+	</style>
+
+	<style name="TflListSubstyle" parent="com.maxmpz.audioplayer:ListSubstyle2">
+		<!-- 禁用宽幅 alt AA 布局（手机横屏纵横比必超 1.85，同平板处理），封面走正方形路径 -->
+		<item name="com.maxmpz.audioplayer:altAaLayoutRatio">999</item>
+		<item name="com.maxmpz.audioplayer:maxAvailSizeForAltAaLayout">0dp</item>
+		<!-- 71% × item 高，item 高约 330~390dp => 封面约 235~275dp，下方留 ~29% 空间容纳标题/艺术家 -->
+		<item name="com.maxmpz.audioplayer:aaItemRatio">71%</item>
+		<item name="com.maxmpz.audioplayer:aaMaxSize">424dp</item>
+		<item name="com.maxmpz.audioplayer:aaSideItemNum">0</item>
+		<item name="com.maxmpz.audioplayer:aaItemBoundsMatchList">width</item>
+		<!-- 封面位置由图像默认 margin（8dp，左上）驱动，分辨率无关；不设 aaGravity/aaPadding（默认 left） -->
+	</style>
+
+	<style name="TflItemTrackAAImage_scene_aa" parent="com.maxmpz.audioplayer:ItemTrackAAImage_scene_aa">
+		<!-- 显式钉死正方形（横屏默认 matchDimension 行为会切换，官方注释要求显式声明）；margin 保持默认 8dp -->
+		<item name="com.maxmpz.audioplayer:layout_matchDimension">widthToHeight</item>
+		<!-- 杀 0.975→1 切歌缩放动画（标题锚定封面底边会跟随跳动） -->
+		<item name="com.maxmpz.audioplayer:scale">1</item>
+	</style>
+
+	<style name="TflItemTrackTitle_scene_aa" parent="com.maxmpz.audioplayer:ItemTrackTitle_scene_aa">
+		<item name="com.maxmpz.audioplayer:layout_attachBottom">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachTop">@com.maxmpz.audioplayer:id/aa_image</item>
+		<item name="com.maxmpz.audioplayer:layout_attachLeft">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachLeftToLeft">@com.maxmpz.audioplayer:id/aa_image</item>
+		<item name="com.maxmpz.audioplayer:layout_attachRight">@null</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginTop">8dp</item>
+	</style>
+
+	<style name="TflItemTrackTitle_scene_aa_playing" parent="com.maxmpz.audioplayer:ItemTrackTitle_scene_aa_playing">
+		<item name="com.maxmpz.audioplayer:layout_attachBottom">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachTop">@com.maxmpz.audioplayer:id/aa_image</item>
+		<item name="com.maxmpz.audioplayer:layout_attachLeft">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachLeftToLeft">@com.maxmpz.audioplayer:id/aa_image</item>
+		<item name="com.maxmpz.audioplayer:layout_attachRight">@null</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginTop">8dp</item>
+	</style>
+
+	<style name="TflItemTrackTitle_scene_aa_vis" parent="com.maxmpz.audioplayer:ItemTrackTitle_scene_aa_vis">
+		<item name="com.maxmpz.audioplayer:layout_attachBottom">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachTop">@com.maxmpz.audioplayer:id/aa_image</item>
+		<item name="com.maxmpz.audioplayer:layout_attachLeft">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachLeftToLeft">@com.maxmpz.audioplayer:id/aa_image</item>
+		<item name="com.maxmpz.audioplayer:layout_attachRight">@null</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginTop">8dp</item>
+	</style>
+
+	<style name="TflItemTrackLine2_scene_aa" parent="com.maxmpz.audioplayer:ItemTrackLine2_scene_aa">
+		<item name="com.maxmpz.audioplayer:layout_attachBottom">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachTop">@com.maxmpz.audioplayer:id/title</item>
+		<item name="com.maxmpz.audioplayer:layout_attachLeftToLeft">@com.maxmpz.audioplayer:id/aa_image</item>
+		<item name="com.maxmpz.audioplayer:layout_attachRight">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_goneWhenEmpty">false</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginTop">2dp</item>
+	</style>
+
+	<style name="TflItemTrackLine2_scene_aa_playing" parent="com.maxmpz.audioplayer:ItemTrackLine2_scene_aa_playing">
+		<item name="com.maxmpz.audioplayer:layout_attachBottom">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachTop">@com.maxmpz.audioplayer:id/title</item>
+		<item name="com.maxmpz.audioplayer:layout_attachLeftToLeft">@com.maxmpz.audioplayer:id/aa_image</item>
+		<item name="com.maxmpz.audioplayer:layout_attachRight">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_goneWhenEmpty">false</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginTop">2dp</item>
+	</style>
+
+	<style name="TflItemTrackLine2_scene_aa_vis" parent="com.maxmpz.audioplayer:ItemTrackLine2_scene_aa_vis">
+		<item name="com.maxmpz.audioplayer:layout_attachBottom">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachTop">@com.maxmpz.audioplayer:id/title</item>
+		<item name="com.maxmpz.audioplayer:layout_attachLeftToLeft">@com.maxmpz.audioplayer:id/aa_image</item>
+		<item name="com.maxmpz.audioplayer:layout_attachRight">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_goneWhenEmpty">false</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginTop">2dp</item>
+	</style>
+
+</resources>

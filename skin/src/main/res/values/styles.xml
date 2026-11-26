@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- 皮肤信息页（本 App 自身界面）使用的主题，与皮肤本身无关 -->
+	<style name="AppTheme" parent="android:Theme.Material.Light.DarkActionBar"></style>
+
+</resources>

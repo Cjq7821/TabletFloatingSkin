@@ -1,0 +1,15 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+rootProject.name = "TabletFloatingSkin"
+
+include ':skin'
+
+// 复用参考仓库中的官方 Poweramp API 库（不复制源码，直接映射模块目录）
+include ':poweramp_api_lib'
+project(':poweramp_api_lib').projectDir = new File(rootDir, '../reference/powerampapi-master/poweramp_api_lib')

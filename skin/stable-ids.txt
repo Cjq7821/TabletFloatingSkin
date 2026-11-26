@@ -1,0 +1,1 @@
+com.cjq7821.poweramp.v3.skins.tabletfloating:style/TabletFloatingSkinDark = 0x800700be

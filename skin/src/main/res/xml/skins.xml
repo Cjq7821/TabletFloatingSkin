@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- targetBuild 很重要：特定值会触发 Poweramp 叠加额外的兼容样式层。
+     参见 reference_resources/values/legacy-styles.xml -->
+<skins targetBuild="1003">
+	<!-- 深色皮肤（唯一版本，基于 Poweramp 黑主题）。布局参数全部固定，无设置项。 -->
+	<skin
+		name="@string/skin_name"
+		author="@string/skin_author"
+		description="@string/skin_description"
+		style="@style/TabletFloatingSkinDark"
+		allowNewPadding="true"/>
+</skins>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Tablet Floating Skin</string>
+
+	<string name="skin_name">Tablet Floating</string>
+	<string name="skin_author">Cjq7821</string>
+	<string name="skin_description">为大屏平板横屏优化的深色皮肤：悬浮导航栏、专辑封面居中于屏幕左半、标题在封面下方、状态栏透明。</string>
+
+	<string name="installation_ok">安装完成。\n\n在 Poweramp 中通过「设置 → 外观 → 主题」选择 Tablet Floating，或直接点击下方按钮应用。\n\n本皮肤的布局调整仅在平板横屏（smallest width ≥ 600dp）下生效，手机与竖屏保持 Poweramp 默认布局。</string>
+	<string name="start_with_skin">应用 Tablet Floating 皮肤</string>
+	<string name="open_theme_settings">打开 Poweramp 皮肤设置</string>
+	<string name="skin_poweramp_not_installed">未检测到 Poweramp，请先安装</string>
+</resources>

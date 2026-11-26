@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<!-- 皮肤主样式（基础配置：手机、竖屏等所有未命中限定符的场景）。
+	     必须继承 Poweramp 官方基础主题，且引用 Poweramp 资源时使用 com.maxmpz.audioplayer: 前缀。
+	     这里只做播放控件的强制覆盖与状态栏透明 —— 平板横屏的布局调整在 values-sw600dp-land/skin_styles.xml 中。 -->
+	<style name="TabletFloatingSkinDark" parent="com.maxmpz.audioplayer:style/ActivityTheme_Black">
+
+		<!-- 系统状态栏背景透明 + 移除 Poweramp 自绘的状态栏遮罩（status_bar_bg 视图，黑主题默认 #5000） -->
+		<item name="android:statusBarColor">@android:color/transparent</item>
+		<item name="com.maxmpz.audioplayer:statusBarBg">#0000</item>
+
+		<!-- ============ 播放控件：强制锁定为"黑色圆形背景 + 白色图标"样式 ============
+		     防止用户开启 Light Buttons / Less Rounding 等 Poweramp 主题选项导致反色。 -->
+
+		<!-- Android 12+ (API 31)：动态渲染按钮，通过颜色属性控制 -->
+		<item name="com.maxmpz.audioplayer:colorPlayButtonsBg">#000</item>
+		<item name="com.maxmpz.audioplayer:colorPlayButtonsTint">#fff</item>
+		<item name="com.maxmpz.audioplayer:colorPlayButtonsStroke">#000</item>
+
+		<!-- pre-Android 12：预渲染 PNG drawable，强制覆盖为带黑色圆背景的版本 -->
+		<item name="com.maxmpz.audioplayer:play_round">@com.maxmpz.audioplayer:drawable/play_round_rounded_100dp</item>
+		<item name="com.maxmpz.audioplayer:pause_round">@com.maxmpz.audioplayer:drawable/pause_round_rounded</item>
+		<item name="com.maxmpz.audioplayer:rw_round">@com.maxmpz.audioplayer:drawable/rw_round_rounded</item>
+		<item name="com.maxmpz.audioplayer:ff_round">@com.maxmpz.audioplayer:drawable/ff_round_rounded</item>
+		<item name="com.maxmpz.audioplayer:prev_cat_round">@com.maxmpz.audioplayer:drawable/prev_cat_round_rounded</item>
+		<item name="com.maxmpz.audioplayer:next_cat_round">@com.maxmpz.audioplayer:drawable/next_cat_round_rounded</item>
+
+		<!-- TopPause 按钮的背景也强制为黑色（pause 状态的圆形遮罩） -->
+		<item name="com.maxmpz.audioplayer:colorBgInverse">#000</item>
+		<item name="com.maxmpz.audioplayer:colorIconInverse">#fff</item>
+               <!-- 播放控件扩展：官方 MoreButtons 布局（同平板横屏，手机竖屏/平板竖屏生效） -->
+               <item name="com.maxmpz.audioplayer:TopWaveseekLayout_extraLayout">@com.maxmpz.audioplayer:layout/merge_topwaveseeklayout_extralayout</item>
+               <item name="com.maxmpz.audioplayer:TopPlay_scene_playing">@com.maxmpz.audioplayer:style/TopPlayMoreButtons_scene_playing</item>
+               <item name="com.maxmpz.audioplayer:TopPause">@com.maxmpz.audioplayer:style/TopPauseMoreButtons</item>
+               <item name="com.maxmpz.audioplayer:TopPause_scene_playing">@com.maxmpz.audioplayer:style/TopPauseMoreButtons_scene_playing</item>
+               <item name="com.maxmpz.audioplayer:TopTrackElapsed">@com.maxmpz.audioplayer:style/TopTrackElapsedMoreButtons</item>
+               <item name="com.maxmpz.audioplayer:TopTrackElapsed_scene_playing">@com.maxmpz.audioplayer:style/TopTrackElapsedMoreButtons_scene_playing</item>
+               <item name="com.maxmpz.audioplayer:TopTrackDuration">@com.maxmpz.audioplayer:style/TopTrackDurationMoreButtons</item>
+               <item name="com.maxmpz.audioplayer:TopTrackDuration_scene_playing">@com.maxmpz.audioplayer:style/TopTrackDurationMoreButtons_scene_playing</item>
+	</style>
+
+</resources>
